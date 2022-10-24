@@ -2,16 +2,15 @@ import xml.etree.ElementTree as ET
 
 
 class Xml2Json:
-    def __init__(self, split_key: str = None, skip_keys: list = None):
-        self.xml_element = ET.fromstring(xml_string)
+    def __init__(self, split_key: str, skip_keys: list = None):
         self.results = []
         self.split_key = split_key
         self.skip_keys = skip_keys or []
-    
+
     def parse(self, xml_string: str):
-        self.xml_element = ET.fromstring(xml_string)
-        return self.xml_element_to_json(self.xml_element)
-    
+        self.xml_element_to_json(ET.fromstring(xml_string))
+        return self.results
+
     def xml_element_to_json(self, xml_element, result=None):
         result = {} if result is None else result
         if len(xml_element) == 0:
